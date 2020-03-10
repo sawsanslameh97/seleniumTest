@@ -83,10 +83,10 @@ public class FirstTest {
 
 	public String getDate(int rows, int colums) throws Exception {
 
-		File file = new File("C:\\Users\\ssalameh\\Desktop\\Test.xlsx");
-		FileInputStream fileInput = new FileInputStream(file);
+		String path = System.getProperty("user.dir");
+		String excelpath = path + "\\Excel\\Test.xlsx"; 
 
-		XSSFWorkbook workbook = new XSSFWorkbook(fileInput);
+		File file = new File(excelpath);
 		Sheet sheet = workbook.getSheetAt(0);
 
 		int row = sheet.getLastRowNum();
@@ -205,8 +205,10 @@ public class FirstTest {
 
 	@BeforeClass
 	public void setUp() {
-		System.setProperty("webdriver.chrome.driver",
-				"C:\\Users\\ssalameh\\Downloads\\chromedriver_win32\\chromedriver.exe");
+		String path = System.getProperty("user.dir"); // return project folder path
+		String driverpath = path + "\\Chromedriver\\chromedriver.exe"; // return driver folder path
+		System.setProperty("webdriver.chrome.driver", driverpath);
+		
 		driver = new ChromeDriver();
 
 		driver.get("https://www.garnethill.com/ShoppingCartView");
